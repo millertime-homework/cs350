@@ -1,0 +1,187 @@
+% Homework 1 - CS350
+% Russell Miller Winter 2011
+
+\documentclass{article}
+\usepackage{fullpage}
+
+\title{CS350 Homework 1}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{3.1-1}
+\textbf{Let $f(n)$ and $g(n)$ be asymptotically nonnegative functions. Using 
+the basic definition of $\Theta$-notation, prove that $max(f(n),g(n)) = 
+\Theta(f(n)+g(n))$.\\}
+
+\begin{quote}
+\textsf{To determine $\Theta$, need to show that there exist positive constants $c_{1}$, 
+$c_{2}$, and $N$ such that\\ $0 \leq c_{1}(f(n)+g(n)) \leq max(f(n),g(n))
+ \leq c_{2}(f(n)+g(n))$ for all $n \geq N$.\\
+\\
+Looking only at the left inequality:\\
+$c_{1}(f(n)+g(n)) \leq max(f(n),g(n))$\\
+Setting up some premises:\\
+$f(n) \leq max(f(n),g(n))$\\
+$g(n) \leq max(f(n),g(n))$\\
+Algebraically this means:\\
+$(f(n)+g(n)) \leq 2max(f(n),g(n))$\\
+Or:\\
+$\frac{1}{2}(f(n)+g(n)) \leq max(f(n),g(n))$\\
+This gives a value of $c_{1} = \frac{1}{2}$. $N$ can be any positive number (e.g., 1).\\
+\\
+Next looking at the right inequality:\\
+$max(f(n),g(n)) \leq c_{2}(f(n)+g(n))$\\
+Even with $c_{2} = 1$, this inequality holds for any value of $n$.\\
+Adding two positive numbers is simply always greater than or equal to either of the numbers individually.\\
+\\
+Because these two inequalities hold, the definition of $\Theta$ is satisfied.\\}
+\end{quote}
+
+\pagebreak
+
+\section*{3-1}
+\textbf{Let $p(n) = \displaystyle\sum\limits_{i=0}^d a_{i}n^{i}$,\\
+where $a_{d}$ \textgreater 0, be a degree-$d$ polynomial in $n$, and let $k$ be a
+ constant. Use the definitions of the asymptotic notations to prove the following properties.\\\\}
+\textbf{a. If $k \geq d$, then $p(n) = O(n^{k})$.\\}
+\begin{quote}
+\textsf{$p(n)$ can also be written as $a_{0} + a_{1}n + a_{2}n^{2} + ... + a_{d}n^{d}$.\\
+This is $d+1$ terms.\\
+To determine $O$, need to show that there exist positive constants $c$ and $N$ such that\\
+$0 \leq p(n) \leq cn^{k}$ for all $n \geq N$.\\
+Now breaking the sum into individual atoms.\\
+$a_{0} \leq cn^{k}$\\
+$a_{1}n \leq cn^{k}$\\
+$a_{2}n^{2} \leq cn^{k}$\\
+...\\
+$a_{d}n^{d} \leq cn^{k}$\\
+\\
+By choosing $c = max(a_{0}...a_{d})(d+1)$ and $N = 1$, then since $k \geq d$\\
+it must be that $p(n) \leq cn^{k}$. Picking the largest coefficient and adding it together
+the same number of times the coefficients are added together that are less than or equal to that coefficient,
+then multiplying it by $n$ raised to a power greater or equal to the greatest exponent, means that every
+aspect of $cn^{k}$ is greater or equal. Thus the definition of $O$ is satisfied.\\}
+\end{quote}
+
+\pagebreak
+
+\textbf{b. If $k \leq d$, then $p(n) = \Omega(n^{k})$.\\}
+\begin{quote}
+\textsf{Assuming $k \leq d$, rewriting the goal statement.\\
+$a_{0} + a_{1}n + a_{2}n^{2} + ... + a_{d}n^{d} \geq cn^{k}$\\
+This is the same as\\
+$a_{0} + a_{1}n + a_{2}n^{2} + ... + a_{d}n^{d} - cn^{k} \geq 0$\\
+As a side note, since we know $k \leq d$, $cn^{k}$ is some piece of one of the atoms of $p(n)$.
+An example of this is that if $k = 2$, part of the left side of this inequality would be $a_{2}n^{2} - cn^{2}$.
+This means the coefficient in front of one of the atoms will be subtracted from. Just in case $k = d$, let
+$c = \frac{a_{d}}{2}$. This means that in that case, the result of $a_{d}n^{d} - cn^{d}$ would be
+$\frac{a_{d}}{2}n^{d}$. It's important that the atom with $a_{d}$ in front of it remain positive because in
+the problem statement, it is the only one guaranteed to be positive.\\
+\\
+Knowing that one of the coefficients will change, going to reconstruct $p(n)$ with new coefficients.\\
+$b_{d}n^{d} - b_{d-1}n^{d-1} - ... - b_{1}n - b_{0} \geq 0$\\
+The point of this statement is to show that\\
+$b_{d}n^{d} \geq b_{d-1}n^{d-1} + ... + b_{1}n + b_{0}$\\
+meaning that the highest degree exponent holds the significance of the formula.\\
+Next breaking down the smaller pieces of this. Going to show that $b_{d}n^{d} \geq b_{i}n^{i}$ for each atom
+$(d-1)..0$.\\
+If you add all of the $b_{i}n^{i}$ terms on the right, you will get the right side of the inequality. If you
+try the same thing with $b_{d}n^{d}$ you will have an imbalanced left side. So to adjust the break down, the
+individual pieces need to be $\frac{b_{d}}{d} \geq b_{i}n^{i}$.\\
+By dividing the $n^{i}$ on the right side, you get $\frac{b_{d}n^{d-i}}{d} \geq b_{i}$.\\
+By multiplying by the reciprocal of $\frac{b_{d}}{d}$ you get $n^{d-i} \geq \frac{db_{i}}{b_{d}}$.\\
+By taking the $d-i$ root of both sides, you get $n \geq \sqrt[d-i]{\frac{db_{i}}{b_{d}}}$.\\
+This suffices as $N_{i}$ for this piece of the puzzle. Let $N = max(N_{d-1}..N_{0})$. This will be a sufficiently
+large value for $N$, and with $c = \frac{a_{d}}{2}$, the defition of $\Omega$ is satisfied.\\}
+\end{quote}
+
+\textbf{c. If $k = d$, then $p(n) = \Theta(n^{k})$.\\}
+\begin{quote}
+\textsf{$p(n) = \Theta(n^{k})$ can be rewritten as\\
+$c_{1}n^{k} \leq p(n) \leq c_{2}n^{k}$ for some nonnegative constants $c$ and $N$,
+and where $n \geq N$.\\
+The left inequality here has already been proven in part b.\\
+The right inequality was proven in part a.\\
+Thus the definition of $\Theta$ has already been satisfied.\\}
+\end{quote}
+
+\pagebreak
+
+\section*{3-4}
+\textbf{Let $f(n)$ and $g(n)$ be asymptotically positive functions. Prove or disprove each of the following conjectures.\\\\}
+\textbf{a. $f(n) = O(g(n))$ implies $g(n) = O(f(n))$.\\}
+\begin{quote}
+\textsf{Assume $f(n) = O(g(n))$.\\
+This means, for some positive constant $c$, $f(n) \leq cg(n)$, for large enough n.\\
+Let $f(n) = n$ and $g(n) = n^{2}$. By choosing $c = 1$ and $N = 1$, it is clear that $n \leq n^{2}$ for $n \geq N$.\\
+However there is no value of $c$ and $N$ where $n^{2} \leq cn$.\\
+Therefore, this conjecture cannot be satisfied.\\}
+\end{quote}
+
+\textbf{b. $f(n) + g(n) = \Theta(min(f(n),g(n))).$\\}
+\begin{quote}
+\textsf{This can be rewritten as $c_{1}(min(f(n),g(n))) \leq f(n) + g(n) \leq c_{2}(min(f(n),g(n)))$.\\
+Let $f(n) = n$ and $g(n) = n^{2}$. For any positive value of $c_{1}$ it is easy to see that the left inequality holds.\\
+It is always true that $n \leq n^{2} + n$.\\
+However, with the right inequality there does not exist a value for $c_{2}$ where $n^{2} + n \leq cn$.\\
+Quadratic growth versus linear growth is fundamentally always greater.\\
+Therefore, this conjecture cannot be satisfied.\\}
+\end{quote}
+
+\textbf{c. $f(n) = O(g(n))$ implies $lg(f(n)) = O(lg(g(n)))$, where $lg(g(n)) \geq 1$ and $f(n) \geq 1$ for all 
+sufficiently large $n$.\\}
+\begin{quote}
+\textsf{Starting with the definition of $O$, $f(n) \leq c(g(n))$.\\
+Then take the logarithm of both sides to get $lg(f(n)) \leq lg(cg(n))$.\\
+Using the product logarithm rule that is the same as $lg(f(n)) \leq lgc + lg(g(n))$.\\
+By transitivity, if $lg(f(n)) \leq lgc + lg(g(n))$ and $lgc + lg(g(n)) \leq c(lg(g(n)))$,\\
+then $lg(f(n)) \leq c(lg(g(n)))$. So first going to prove that $lgc + lg(g(n)) \leq c(lg(g(n)))$.\\
+To make this more clear, specifying a base for the logarithms in the inequality. Choosing $10$.\\
+$log_{10}c + log_{10}g(n) \leq c(log_{10}g(n))$\\
+Using this base, and choosing $c = 10$, $1 + log_{10}g(n) \leq 10log_{10}g(n)$.\\
+The $log_{10}g(n)$ will have equal values on both sides, and obviously multiplying by $10$ will produce
+a larger value than adding $1$ for any positive value of $n$.\\
+Therefore, this conjecture is satisfied.\\}
+\end{quote}
+
+\textbf{d. $f(n) = O(g(n))$ implies $2^{f(n)} = O(2^{g(n)})$.\\}
+\begin{quote}
+\textsf{By the definition of $O$, $f(n) \leq cg(n)$.\\
+If we let $f(n) = 5n$ and $g(n) = 3n$, it is clear that this holds by choosing $c = 2$.\\
+For $2^{f(n)} = O(2^{g(n)})$ to also hold, it must hold that $2^{f(n)} \leq c2^{g(n)}$.\\
+Distributing the functions, $2^{5n} \leq c2^{2n}$.\\
+For some simple examples, using $c = 2$ again, and checking some values of $n$, this evaluates to\\
+$32 \leq 8$ for $n = 1$.\\
+$1024 \leq 32$ for $n = 2$.\\
+$32728 \leq 128$ for $n = 3$.\\
+It is very clear to see that as $n$ gets larger, the difference gets much larger. This is another way of
+saying that the difference of the exponents far outweighs any value of $c$. Therefore, this conjecture
+cannot be satisfied.\\}
+\end{quote}
+
+\textbf{e. $f(n) = O((f(n))^{2})$.\\}
+\begin{quote}
+\textsf{By the definition of $O$, $f(n) \leq c((f(n))^{2})$.\\
+Let $f(n) = n$. There is no value of $c$ that can cause $n^{2}$ to be less than $n$. While this is a rather
+simple example, this statement defines $O$.\\}
+\end{quote}
+
+\textbf{f. $f(n) = O(g(n))$ implies $g(n) = \Omega(f(n))$.\\}
+\begin{quote}
+\textsf{By the definition of $O$, $f(n) \leq cg(n)$ for some constant $c$.\\
+Let $f(n) = n$ and $g(n) = n^{2}$. $O$ is satisfied for these functions with any value of $c$.\\
+Using any value of $c$, $\Omega$ is also satisfied for $g(n) \geq cf(n)$.\\
+If a function is an upper bound for another function, it is bounded below by that function!\\}
+\end{quote}
+
+\textbf{g. $f(n) = \Theta(f(n/2))$.\\}
+\begin{quote}
+\textsf{By the definition of $\Theta$, $c_{1}f(\frac{n}{2}) \leq f(n) \leq c_{2}f(\frac{n}{2})$.\\
+Choose $c_{1} = 1$ and $c_{2} = 4$. The $n$ value for each of these forms of $f$ will be less for
+the lower bound, and more for the upper bound. Therefore, $\Theta$ is satisfied.\\}
+\end{quote}
+\end{document}

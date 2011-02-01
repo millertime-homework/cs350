@@ -1,0 +1,49 @@
+-------------------------------------------------------------------
+CS350 Algorithms and Complexity                          Homework 2
+-------------------------------------------------------------------
+
+Most of the following exercises come from the book, but in some
+cases the differences between the 2nd and 3rd editions are big
+enough that I thought it would be easier just to enter the text.
+
+Please note: This is a for-credit assignment!  Please submit on
+time (by 10am on Thursday Jan 27, the start of class).  If you
+cannot answer all of the questions by the deadline, it is much
+better to submit a partial solution on time than to submit a
+complete solution late.
+
+1) Suppose that r is a constant and prove by induction that the sum
+  of the numbers r^i for i=0..n is: (r^(n+1) - 1) / (r - 1).  What
+  happens in the case where r = 1?
+
+2) 2.3-3 from the book (p36 in 2nd ed, p39 in 3rd ed)
+3) 2.3-4
+4) 2.3-5
+5) 2.3-7
+
+6) 4.3-3 from the book 2nd edition (p75)
+  or 4.5-3 from the book 3rd edition (p97)
+
+7) 4.3-4 from the book 2nd edition
+  or 4.5-4 from the book 3rd edition
+
+8) Give asymptotic upper and lower bounds for T(n) in each of the
+  following recurrences.  Assume that T(n) is a constant for n<=2.
+  Make your bounds as tight as possible, and justify your answers.
+  a) T(n) = 2T(n/2) + n^3
+  b) T(n) = T(9n/10) + n
+  c) T(n) = 16T(n/4) + n^2
+  d) T(n) = 7T(n/3) + n^2
+  e) T(n) = 7T(n/2) + n^2
+  f) T(n) = 2T(n/4) + sqrt(n)
+  g) T(n) = T(n-1) + n
+  h) T(n) = T(sqrt(n)) + 1
+  i) T(n) = 3T(n/2) + n lg n
+  j) T(n) = T(n-1) + 1
+  k) T(n) = T(n/2) + 1
+
+  Note that sqrt(n) denotes the square root of n.  Don't be surprised
+  if some of the recurrences listed above look familiar; you may have
+  seem some of these elsewhere!
+
+-------------------------------------------------------------------
