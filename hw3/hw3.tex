@@ -1,0 +1,53 @@
+% Homework 3 - CS350
+% Russell Miller Winter 2011
+
+\documentclass{article}
+\usepackage{anysize}
+\usepackage{fullpage}
+\usepackage{cancel}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\title{CS350 Homework 3}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{22.1-1}
+The out-degree of a vertex is just its adjacency list, so in $\Theta(V)$
+time you can get the out-degree of every vertex.\\
+Finding the in-degree for every vertex would require looking for that
+vertex in every vertex's adjacency list. So the entire adjacency list 
+must be visited, which would be $\Theta(V*E)$, where $V$ is the total
+number of vertices, and $E$ is the total number of edges.\\
+
+\section*{22.1-3}
+\begin{verbatim}
+Adjacency List
+[(1,[2,3]),
+ (2,[4,5]),
+ (3,[6,7])]
+
+Adjacency Matrix
+\end{verbatim}
+\begin{tabular}{|c|c c c c c c c|}
+\hline
+ &1&2&3&4&5&6&7\\
+\hline
+1&0&1&1&0&0&0&0\\
+2&0&0&0&1&1&0&0\\
+3&0&0&0&0&0&1&1\\
+4&0&0&0&0&0&0&0\\
+5&0&0&0&0&0&0&0\\
+6&0&0&0&0&0&0&0\\
+7&0&0&0&0&0&0&0\\
+\hline
+\end{tabular}
+
+\section*{22.1-3}
+
+
+\end{document}
