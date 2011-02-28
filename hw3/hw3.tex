@@ -100,5 +100,56 @@ AND the sink, and the algorithm traverses every edge before reaching the sink. I
 \end{tabular}
 
 \section*{22.2-8}
+\begin{verbatim}
+MAZESOLVE(G)
+1  new array visits[ G.edges.length ]
+2  new array status[ G.vertices.length]
+3  for each v in G.vertices
+4    status[v] = unvisited
+5  endfor
+6  new queue Q
+7  Q.enqueue(G.vertices[0])
+8  status[G.vertices[0]] = discovered
+9  while Q.notempty
+10   u = Q.dequeue
+11   for each v in u.adj_list
+12     if status[v] == unvisited
+13       ++visits[(u,v)]
+14       status[v] = discovered
+15       Q.enqueue(v)
+16     endif
+17   endfor
+18   status[u] = visited
+19   for each v in u.adj_list
+20     ++visits[(u,v)]
+21   endfor
+22 endwhile
+\end{verbatim}
+This algorithm should be setting each value of the 'visits' array to 2.
+That means each edge has been visited twice. The way this can solve a maze
+is by traversing the graph, you can find your way back out by following the
+vertices you've marked twice. Those are the ones that are visited.\\
+
+\section*{22.3-8}
+Using adjacency-list representation, here is an example graph:
+\begin{verbatim}
+{ A : (B,C),
+  B : (),
+  C : (B) }
+\end{verbatim}
+The depth-first search would produce a time table such as this:\\
+\begin{tabular}{|c|c c c|}
+\hline
+  & A & B & C\\
+\hline
+d & 1 & 2 & 4\\
+\hline
+v & 6 & 3 & 5\\
+\hline
+\end{tabular}
+\\This includes a path $C \rightarrow B$, where $d[B] < v[C]$.\\
+
+\section*{22.3-11}
+
 
 \end{document}
