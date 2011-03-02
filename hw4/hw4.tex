@@ -1,0 +1,40 @@
+% Homework 4 - CS350
+% Russell Miller Winter 2011
+
+\documentclass{article}
+\usepackage{anysize}
+\usepackage{fullpage}
+\usepackage{cancel}
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\title{CS350 Homework 4}
+\author{Russell Miller}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{24.3-6}
+\begin{verbatim}
+MOST-RELIABLE-PATH(G, source)
+1  mark each vertex as distance infinity
+2  mark each vertex's previous vertex as undefined
+3  mark the source's distance as 0
+4  put all of the vertices in a Queue
+5  while the Queue is not empty
+6    find the vertex u with the least distance
+7    if that vertex is the target
+8      create a new sequence S
+9      while previous vertex of u is defined
+10       add u at the beginning of S
+11       continue to u's previous vertex
+12     remove that vertex from the Queue
+13   for each neighbor v of that vertex
+14     add the negative logs of u and (u,v)
+15     if the sum is less than the current value of v's distance
+16       set v's distance to that sum
+17       set v's previous vertex to u
+\end{verbatim}
+\end{document}
